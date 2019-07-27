@@ -35,11 +35,11 @@ Para definir um requisito, preencha as tuplas adequadamente. Desta forma, para d
 |19| Gerar uma listar de compras de ingressos para um determinado evento | O organizador de um evento poderá visualizar uma lista com uma relação de todos os clientes que comprar ingressos para o seu evento, os que cancelaram a compra e os que compraram mas não compareceram a festa | Essencial |
 |20| Calcular lucro obtido com a venda de bebidas, alimentos e outros | A plataforma deverá calcular o lucro obtido com as vendas de outros produtos (bebidas, por exemplo) através da plataforma | Importante |
 |21| Gerar bilhete válido como ingresso para o evento | Após a confirmação de pagamentos, a plataforma deverá gerar um código QRcode válido como ingresso, por meio do qual o cliente possa acessa ao evento de seu interesse. | Essencial |
-|22| Contabilizar número de clientes que participaram do evento | A plataforma deverá contar quantos clientes tiveram as suas participações confirmadas no evento, por meio da demonstração de seu ingresso para entrar no evento. | Importante |
+|22| Contabilizar número de clientes que participaram do evento | A plataforma deverá contar quantos clientes tiveram as suas participações confirmadas no evento, por meio da demonstração de seu ingresso para entrar no evento. Ou seja, a plataforma gera uma lista de presença. | Importante |
 |23| Logar usuários | A plataforma deverá permitir que os usuários loguem em suas respectivas contas, fornecendo nome de usuário e senha. Assim, a plataforma autentica e autoriza os usuários. | Essencial |
 |24| Notificar cliente sobre novos eventos | A plataforma poderá notificar o cliente sobre novos eventos que irão ocorrer baseado em algumas condiçoes, como, por exemplo, a proximidade do cliente com os eventos. Veja todas as regras que definem como notificar um cliente sobre novos eventos em regras de negócio. | Essencial |
 |25| Verificar ingresso do cliente | Para entrar em um evento, o cliente deve apresentar seu ingresso (código QRcode) aos recepcionistas do evento, que, usando, por exemplo, um leitor de QRcode, poderá válida o ingresso do cliente. A plataforma deverá verificar se o QRcode é válido, permitindo a entrada do cliente caso sejá válido para o evento em questão.| Essencial |
- 
+
 ### Regras de negócio
 
 |ID|Nome|Descrição|Dependências|Módulo|
