@@ -6,7 +6,8 @@
   "scripts": {
     "gulp": "node_modules/.bin/gulp",
     "dev": "NODE_ENV=development node_modules/.bin/nodemon --delay 3 dist/serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "production": "NODE_ENV=production",
+    "test": "NODE_ENV=test"
   },
   "author": "",
   "license": "ISC",
