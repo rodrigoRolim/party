@@ -6,9 +6,7 @@ import dotenv from 'dotenv-safe'
 import cors from 'cors'
 
 class App {
-  constructor() {
- 
-  }
+  constructor() {}
   configureExpress() {
 
     dotenv.config({
