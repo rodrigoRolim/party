@@ -42,28 +42,3 @@ jobs:
     - stage: test release
       script: "curl https://party-release.herokuapp.com"
         
-       
-            
-
-    #- stage: "Deploy to production"
-     # deploy:
-      #  provider: releases
-       # api_key: 
-        #  secure: "<encrypted-token>"
-        #file: "./dist"
-        #skip_cleanup: true
-        #app: "nome do dominio"
-        #on:
-         # branches:
-          #  only: 
-           #   - master
-          #tags: true
-
-
-#deploy:
- # provider: "host"
- # api_key: ...
- # app:
-  #  master: my-app-staging
-  #  release: 
-  # e5a6c3c8b83516ad8c1f57a3a4e0074d08e72219
