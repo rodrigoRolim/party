@@ -18,8 +18,8 @@ jobs:
       #script: npm run test:unit
     #- script: npm run test:integration
      # name: "Integration Test"
-    #- stage: "Package"
-     # script: npm run build
+    - stage: "Package"
+      script: npm run build
     - stage: "Deploy"
       deploy:
         provider: releases
