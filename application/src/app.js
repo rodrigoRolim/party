@@ -19,4 +19,4 @@ const configureExpress = () => {
 }
 
 
-export default () => database.sequelize.sync({ force: false}).then(configureExpress)
+export default () => database.sequelize.sync({ force: false }).then(configureExpress)

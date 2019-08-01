@@ -21,5 +21,15 @@ jobs:
     - stage: "Build"
       script: npm run build
     - stage: "Deploy"
-      script: 
+      deploy:
+        provider: 'heroku'
+        api_key: 
+          secure: "<encrypted-token>"
+        file: 'dist'
+        skip_cleanup: true
+        on:
+          branches:
+            only: 
+            - master
+          tags: true
 

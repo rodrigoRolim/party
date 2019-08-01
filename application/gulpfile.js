@@ -27,6 +27,7 @@ task('static', function () {
     .pipe(plumber())
     .pipe(dest('dist'))
 })
+exports.build = task('build')
 exports.default = function() {
 
  watch('src/**/*.js', { ignoreInitial: false }, series(task('clean'), task('static'), task('build')))
