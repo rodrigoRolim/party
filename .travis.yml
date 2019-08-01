@@ -19,37 +19,33 @@ jobs:
     - script: npm run test:integration
       name: "Integration Test"
     - stage: "Package"
-      cache: 
-        directories:
-          - ./application/dist
       script: npm run build
     - stage: "Deploy to development"
       deploy:
-        provider:
-        api_key:
-          secure:
-        file: "./dist"
+        provider: releases
+        api_key: ${api_key}
+        file: "./application/dist"
         skip_cleanup: true
-        app: "nome do dominio"
+        #app: "nome do dominio"
         on:
           brancher:
             only:
-              - developer
-            tags: true
-
-    - stage: "Deploy to production"
-      deploy:
-        provider: 'heroku'
-        api_key: 
-          secure: "<encrypted-token>"
-        file: "./dist"
-        skip_cleanup: true
-        app: "nome do dominio"
-        on:
-          branches:
-            only: 
               - master
-          tags: true
+            
+
+    #- stage: "Deploy to production"
+     # deploy:
+      #  provider: releases
+       # api_key: 
+        #  secure: "<encrypted-token>"
+        #file: "./dist"
+        #skip_cleanup: true
+        #app: "nome do dominio"
+        #on:
+         # branches:
+          #  only: 
+           #   - master
+          #tags: true
 
 
 #deploy:
@@ -58,3 +54,4 @@ jobs:
  # app:
   #  master: my-app-staging
   #  release: 
+  # e5a6c3c8b83516ad8c1f57a3a4e0074d08e72219
