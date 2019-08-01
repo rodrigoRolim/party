@@ -11,26 +11,38 @@ before_script:
   - npm update -q
   - cd application
   - npm install
+stages:
+  - compile
+  - tests
+  - deploy
+
 jobs:
   include:
-    #- stage: "Tests"
-     # name: "Unit Test"
-      #script: npm run test:unit
-    #- script: npm run test:integration
-     # name: "Integration Test"
-    - stage: "Package"
-      script: npm run build
-    - stage: "Deploy"
-      deploy:
-        provider: releases
+    - stage: tests
+      name: "Unit Test"
+      script: npm run test:unit
+    - script: npm run test:integration
+      name: "Integration Test"
+    - stage: deploy to develop
+      script: skip
+      deploy: &heroku
+        provider: heroku
+        app: party-development
         api_key: ${api_key}
-        file: "./application/dist"
-        skip_cleanup: true
-        #app: "nome do dominio"
-        on:
-          brancher:
-            only:
-              - master
+        on: develop
+    - stage: test develop
+      script: "curl https://party-development.herokuapp.com"
+      
+    - stage: deploy to release
+      script: skip
+      deploy: 
+        <<: *heroku
+        app: party-release
+        on: /^release-.*$/
+    - stage: test release
+      script: "curl https://party-release.herokuapp.com"
+        
+       
             
 
     #- stage: "Deploy to production"
