@@ -20,16 +20,8 @@ jobs:
       name: "Integration Test"
     - stage: "Package"
       cache: 
-        key: site-package
-        policy: push
-        paths:
+        directories:
           - ./application/dist
-        artifacts:
-          name: "name-package"
-          when: always
-          expire_in: 2h20min
-          paths:
-            - ./application/dist
       script: npm run build
     - stage: "Deploy to development"
       deploy:
@@ -38,6 +30,7 @@ jobs:
           secure:
         file: "./dist"
         skip_cleanup: true
+        app: "nome do dominio"
         on:
           brancher:
             only:
@@ -51,9 +44,17 @@ jobs:
           secure: "<encrypted-token>"
         file: "./dist"
         skip_cleanup: true
+        app: "nome do dominio"
         on:
           branches:
             only: 
               - master
           tags: true
 
+
+#deploy:
+ # provider: "host"
+ # api_key: ...
+ # app:
+  #  master: my-app-staging
+  #  release: 
