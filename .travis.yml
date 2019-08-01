@@ -41,4 +41,3 @@ jobs:
         on: /^release-.*$/
     - stage: test release
       script: "curl https://party-release.herokuapp.com"
-        
