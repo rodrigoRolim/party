@@ -18,18 +18,42 @@ jobs:
       script: npm run test:unit
     - script: npm run test:integration
       name: "Integration Test"
-    - stage: "Build"
+    - stage: "Package"
+      cache: 
+        key: site-package
+        policy: push
+        paths:
+          - ./application/dist
+        artifacts:
+          name: "name-package"
+          when: always
+          expire_in: 2h20min
+          paths:
+            - ./application/dist
       script: npm run build
-    - stage: "Deploy"
+    - stage: "Deploy to development"
+      deploy:
+        provider:
+        api_key:
+          secure:
+        file: "./dist"
+        skip_cleanup: true
+        on:
+          brancher:
+            only:
+              - developer
+            tags: true
+
+    - stage: "Deploy to production"
       deploy:
         provider: 'heroku'
         api_key: 
           secure: "<encrypted-token>"
-        file: 'dist'
+        file: "./dist"
         skip_cleanup: true
         on:
           branches:
             only: 
-            - master
+              - master
           tags: true
 
