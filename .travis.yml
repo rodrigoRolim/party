@@ -13,14 +13,14 @@ before_script:
   - npm install
 jobs:
   include:
-    - stage: "Tests"
-      name: "Unit Test"
-      script: npm run test:unit
-    - script: npm run test:integration
-      name: "Integration Test"
-    - stage: "Package"
-      script: npm run build
-    - stage: "Deploy to development"
+    #- stage: "Tests"
+     # name: "Unit Test"
+      #script: npm run test:unit
+    #- script: npm run test:integration
+     # name: "Integration Test"
+    #- stage: "Package"
+     # script: npm run build
+    - stage: "Deploy"
       deploy:
         provider: releases
         api_key: ${api_key}
