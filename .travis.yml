@@ -27,8 +27,8 @@ jobs:
       script: skip
       deploy: &heroku
         provider: heroku
-        # app: party-development
-        api_key:  ${api_key}
+        app: party-development
+        api_key: ${api_key}
         on: develop
     - stage: test develop
       script: "curl https://party-development.herokuapp.com"
