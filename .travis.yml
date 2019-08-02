@@ -1,3 +1,4 @@
+sudo: required
 language: node_js
 node_js: 8.15.1
 services:
@@ -10,6 +11,7 @@ cache:
 before_script:
   - npm update -q
   - npm install
+  - npm install -g heroku
 stages:
   - compile
   - tests
@@ -23,12 +25,12 @@ jobs:
     - script: npm run test:integration
       name: "Integration Test"
     - stage: deploy to develop
-      script: skip
+      script: heroku git:remote -a app-party
       deploy: &heroku
         provider: heroku
         app: party-development
         api_key: ${api_key}
-        on: develop
+      on: develop
     - stage: test develop
       script: "curl https://party-development.herokuapp.com"
       
@@ -37,6 +39,6 @@ jobs:
       deploy: 
         <<: *heroku
         app: party-release
-        on: /^release-.*$/
+      on: /^release-.*$/
     - stage: test release
       script: "curl https://party-release.herokuapp.com"
