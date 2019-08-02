@@ -39,8 +39,7 @@ jobs:
         app: app-party-staging
         api_key: ${api_key}
         on: 
-          repo: rodrigoRolim/party
-          only: develop
+          repo: rodrigoRolim/party/tree/develop
     - stage: test develop
       script: "curl https://party-development.herokuapp.com"
       
@@ -49,5 +48,7 @@ jobs:
       deploy: 
         <<: *heroku
         app: app-party-production
+        on: 
+          repo: rodrigoRolim/party
     - stage: test production
       script: "curl https://party-release.herokuapp.com"
