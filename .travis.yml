@@ -15,7 +15,14 @@ before_script:
 stages:
   - compile
   - tests
-  - deploy
+  - name: deploy to staging
+    if: branch = develop
+  - name: test develop
+    if: branch = develop
+  - name: deploy to production
+    if: branch = master
+  - name: test production
+    if: branch = master
 
 jobs:
   include:
@@ -24,25 +31,23 @@ jobs:
       script: npm run test:unit
     - script: npm run test:integration
       name: "Integration Test"
-    - stage: deploy to develop
-      script: true
+    - stage: deploy to staging
+      script: skip
       deploy: &heroku
         skip_cleanup: true
         provider: heroku
-        app: app-party
+        app: app-party-staging
         api_key: ${api_key}
         on: 
           repo: rodrigoRolim/party
-          all_branches: true
-     # on: develop
+          only: develop
     - stage: test develop
       script: "curl https://party-development.herokuapp.com"
       
-    - stage: deploy to release
-      script: skip
+    - stage: deploy to production
+      script: /bin/true
       deploy: 
         <<: *heroku
-        app: party-release
-      on: /^release-.*$/
-    - stage: test release
+        app: app-party-production
+    - stage: test production
       script: "curl https://party-release.herokuapp.com"
