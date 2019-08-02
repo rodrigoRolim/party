@@ -11,7 +11,7 @@ cache:
 before_script:
   - npm update -q
   - npm install
-  - npm install -g heroku
+  # - npm install -g heroku
 stages:
   - compile
   - tests
@@ -28,13 +28,14 @@ jobs:
       script: skip
       deploy: &heroku
         provider: heroku
-        app: app-party
-        api_key: ${api_key}
+        app: party-development
+        api_key: 
+          secure: ${api_key}
         on: 
           repo: rodrigoRolim/party
-      on: develop
+     # on: develop
     - stage: test develop
-      script: "curl https://app-party.herokuapp.com"
+      script: "curl https://party-development.herokuapp.com"
       
     - stage: deploy to release
       script: skip
