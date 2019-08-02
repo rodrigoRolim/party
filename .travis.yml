@@ -28,8 +28,10 @@ jobs:
       script: heroku git:remote -a app-party
       deploy: &heroku
         provider: heroku
-        app: party-development
+        app: app-party
         api_key: ${api_key}
+        on: 
+          repo: rodrigoRolim/party
       on: develop
     - stage: test develop
       script: "curl https://party-development.herokuapp.com"
