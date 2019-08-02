@@ -29,7 +29,7 @@ jobs:
       deploy: &heroku
         skip_cleanup: true
         provider: heroku
-        app: party-development
+        app: app-party
         api_key: ${api_key}
         on: 
           repo: rodrigoRolim/party
