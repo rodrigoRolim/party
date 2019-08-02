@@ -31,6 +31,7 @@ jobs:
       script: npm run test:unit
     - script: npm run test:integration
       name: "Integration Test"
+    
     - stage: deploy to staging
       script: skip
       deploy: &heroku
@@ -39,7 +40,8 @@ jobs:
         app: app-party-staging
         api_key: ${api_key}
         on: 
-          repo: rodrigoRolim/party/tree/develop
+          repo: rodrigoRolim/party
+          branch: develop
     - stage: test develop
       script: "curl https://party-development.herokuapp.com"
       
@@ -50,5 +52,6 @@ jobs:
         app: app-party-production
         on: 
           repo: rodrigoRolim/party
+          branch: master
     - stage: test production
       script: "curl https://party-release.herokuapp.com"
