@@ -25,7 +25,7 @@ jobs:
     - script: npm run test:integration
       name: "Integration Test"
     - stage: deploy to develop
-      script: heroku git:remote -a app-party
+      script: skip
       deploy: &heroku
         provider: heroku
         app: app-party
@@ -34,7 +34,7 @@ jobs:
           repo: rodrigoRolim/party
       on: develop
     - stage: test develop
-      script: "curl https://party-development.herokuapp.com"
+      script: "curl https://app-party.herokuapp.com"
       
     - stage: deploy to release
       script: skip
