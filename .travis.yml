@@ -25,13 +25,15 @@ jobs:
     - script: npm run test:integration
       name: "Integration Test"
     - stage: deploy to develop
-      script: skip
+      script: true
       deploy: &heroku
+        skip_cleanup: true
         provider: heroku
         app: party-development
         api_key: ${api_key}
         on: 
           repo: rodrigoRolim/party
+          all_branches: true
      # on: develop
     - stage: test develop
       script: "curl https://party-development.herokuapp.com"
