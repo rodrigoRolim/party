@@ -29,8 +29,6 @@ jobs:
       script: npm run test:unit
     - script: npm run test:integration
       name: "Integration Test"
-    - script: npm run build
-      name: build
     - stage: deploy to staging
       script: skip
       deploy: &heroku
@@ -43,7 +41,9 @@ jobs:
           branch: staging
     - stage: test staging
       script: "curl https://app-party-staging.herokuapp.com"
-      
+      on:
+        branch: staging
+
     - stage: deploy to production
       script: /bin/true
       deploy: 
