@@ -16,9 +16,7 @@ stages:
   - compile
   - tests
   - name: deploy to staging
-    if: branch = develop
-  - name: test develop
-    if: branch = develop
+    if: branch = staging
   - name: deploy to production
     if: branch = master
   - name: test production
