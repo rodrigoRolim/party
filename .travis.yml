@@ -11,7 +11,7 @@ cache:
 before_script:
   - npm update -q
   - npm install
-  # - npm install -g heroku
+
 stages:
   - compile
   - tests
@@ -31,7 +31,8 @@ jobs:
       script: npm run test:unit
     - script: npm run test:integration
       name: "Integration Test"
-    
+    - script: npm run build
+      name: build
     - stage: deploy to staging
       script: skip
       deploy: &heroku
@@ -41,9 +42,9 @@ jobs:
         api_key: ${api_key}
         on: 
           repo: rodrigoRolim/party
-          branch: develop
-    - stage: test develop
-      script: "curl https://party-development.herokuapp.com"
+          branch: staging
+    - stage: test staging
+      script: "curl https://app-party-staging.herokuapp.com"
       
     - stage: deploy to production
       script: /bin/true
@@ -54,4 +55,4 @@ jobs:
           repo: rodrigoRolim/party
           branch: master
     - stage: test production
-      script: "curl https://party-release.herokuapp.com"
+      script: "curl https://app-party-production.herokuapp.com"
