@@ -45,7 +45,9 @@ jobs:
           secure: ${key_aws_id}
         secret_access_key:
           secure: ${secret_key_aws}
-        region: "us-west-1"  
+        region: "us-west-2"  
         app: "app-party"
         env: "AppParty-env"
-        bucket_name: "the-target-S3-bucket
+        bucket_name: "elasticbeanstalk-us-west-2-862757557765"
+        on:
+          branch: master
