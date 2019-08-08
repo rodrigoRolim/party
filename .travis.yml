@@ -37,10 +37,6 @@ jobs:
         on: 
           repo: rodrigoRolim/party
           branch: staging
-    - stage: test staging
-      script: "curl https://app-party-staging.herokuapp.com"
-      on:
-        branch: staging
 
     - stage: deploy to production
       deploy:
