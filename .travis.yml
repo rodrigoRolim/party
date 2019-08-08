@@ -31,7 +31,7 @@ jobs:
       name: "Integration Test"
     - stage: deploy to staging
       script: skip
-      deploy: &heroku
+      deploy: #&heroku
         skip_cleanup: true
         provider: heroku
         app: app-party-staging
@@ -44,13 +44,24 @@ jobs:
       on:
         branch: staging
 
-    - stage: deploy to production
-      script: /bin/true
-      deploy: 
-        <<: *heroku
-        app: app-party-production
-        on: 
-          repo: rodrigoRolim/party
-          branch: master
-    - stage: test production
-      script: "curl https://app-party-production.herokuapp.com"
+    #- stage: deploy to production
+     # script: /bin/true
+      #deploy: 
+       # <<: *heroku
+        #app: app-party-production
+        #on: 
+         # repo: rodrigoRolim/party
+         # branch: master
+    #- stage: test production
+    #  script: "curl https://app-party-production.herokuapp.com"
+
+    deploy:
+      provider: elasticbeanstalk
+      access_key_id: 
+        secure: ${key_aws_id}
+      secret_access_key:
+        secure: ${secret_key_aws}
+      region: "us-west-1"  
+      app: "app-party"
+      env: "AppParty-env"
+      bucket_name: "the-target-S3-bucket
