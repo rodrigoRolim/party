@@ -15,12 +15,11 @@ before_script:
 stages:
   - compile
   - tests
- # - name: deploy to staging
-  #  if: branch = staging
+  - name: deploy to staging
+    if: branch = staging
   - name: deploy to production
     if: branch = master
-  #- name: test production
-  #  if: branch = master
+
 
 jobs:
   include:
@@ -31,7 +30,7 @@ jobs:
       name: "Integration Test"
     - stage: deploy to staging
       script: skip
-      deploy: #&heroku
+      deploy:
         skip_cleanup: true
         provider: heroku
         app: app-party-staging
@@ -44,16 +43,6 @@ jobs:
       on:
         branch: staging
 
-    #- stage: deploy to production
-     # script: /bin/true
-      #deploy: 
-       # <<: *heroku
-        #app: app-party-production
-        #on: 
-         # repo: rodrigoRolim/party
-         # branch: master
-    #- stage: test production
-    #  script: "curl https://app-party-production.herokuapp.com"
     - stage: deploy to production
       deploy:
         provider: elasticbeanstalk
